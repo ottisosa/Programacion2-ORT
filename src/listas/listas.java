@@ -1,6 +1,7 @@
 package listas;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class listas {
 
@@ -51,6 +52,17 @@ public class listas {
         for(camion cam : listaCamiones){
     
         System.out.println(cam);
+        
+        
+        // Iterador 
+        
+        Iterator it = listaCamiones.iterator();
+        
+        while(it.hasNext()){
+        
+            System.out.println(it.next());
+            
+        }
     }
         
         
