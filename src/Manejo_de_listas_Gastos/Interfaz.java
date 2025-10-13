@@ -1,4 +1,4 @@
-package Manejo_de_listas_Gastos;
+package gastoscasa;
 
 import java.util.*;
 
@@ -27,18 +27,76 @@ public class Interfaz {
                 case 3:
                     System.out.println("Gasto mayor: "+casa.gastoMayor());
                     break;
-                case 4:
-                    
+                case 4:                    
+                    ordenar(casa);
                     break;
                 case 5:
-                    
+                    buscarMonto(casa);
                     break;
                 case 6:
-                    
+                    traerMonto(casa);
                     break;
             }
         }
         System.out.println("Hasta luego");
+    }
+    
+    public static void buscarMonto(Casa casa){
+        int monto = pedirNumero("Ingrese monto a buscar: ",1,1000000);
+        Gasto aux = new Gasto();
+        aux.setMonto(monto);
+        if (casa.getListaGastos().contains(aux)){
+            System.out.println("Existe un gasto con ese monto");
+        }
+        else {
+            System.out.println("NO existe un gasto con ese monto");
+        }
+    }
+
+    public static void traerMonto(Casa casa){
+        int monto = pedirNumero("Ingrese monto a buscar: ",1,1000000);
+        Gasto aux = new Gasto();
+        aux.setMonto(monto);
+        if (casa.getListaGastos().contains(aux)){
+            int posicion = casa.getListaGastos().indexOf(aux);
+            Gasto nuevo = casa.getListaGastos().get(posicion);
+            System.out.println(nuevo);        
+        }
+        else {
+            System.out.println("NO existe un gasto con ese monto");
+        }
+    }
+
+    public static void ordenar(Casa casa){
+        Scanner in = new Scanner(System.in);
+        int opcion = 0;
+        while (opcion != 5){
+            System.out.println("\nORDENAR\n");
+            System.out.println("1. por monto, creciente");
+            System.out.println("2. por monto, decreciente");
+            System.out.println("3. por descripcion");
+            System.out.println("4. por dia y descripcion");
+            System.out.println("5. volver al menu");
+            opcion = pedirNumero("Elija su opcion (1-5): ",1,5);
+            switch(opcion){
+                case 1:
+                    casa.ordenarPorMontoCreciente();
+                    mostrarTodos(casa);
+                    break;
+                case 2:
+                    casa.ordenarPorMontoDecreciente();
+                    mostrarTodos(casa);
+                    break;
+                case 3:
+                    casa.ordenarPorDescripcion();
+                    mostrarTodos(casa);
+                    break;
+                case 4:
+                    casa.ordenarPorDiaDescripcion();
+                    mostrarTodos(casa);
+                    break;
+            }
+        }
     }
     
     public static void mostrarTodos(Casa casa){

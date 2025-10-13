@@ -1,4 +1,4 @@
-package Manejo_de_listas_Gastos;
+package gastoscasa;
 
 public class GastosCasa {
 

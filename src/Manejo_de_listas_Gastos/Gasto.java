@@ -1,6 +1,6 @@
-package Manejo_de_listas_Gastos;
+package gastoscasa;
 
-public class Gasto {
+public class Gasto implements Comparable<Gasto>{
     private int dia;
     private String descripcion;
     private int monto;
@@ -43,6 +43,17 @@ public class Gasto {
     public String toString() {
         return dia + " " + descripcion + " $ " + monto;
     }
+
+    @Override
+    // Criterio por defecto: por monto, creciente
+    public int compareTo(Gasto unGasto) {
+        return this.getMonto() - unGasto.getMonto();        
+    }
     
+    @Override
+    public boolean equals(Object obj){
+        Gasto unGasto = (Gasto)obj;
+        return this.getMonto() == unGasto.getMonto();
+    }
     
 }
